@@ -1,0 +1,19 @@
+{
+  "name": "grpc-vs-rest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipefahrion/node-grpc-vs-rest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/felipefahrion/node-grpc-vs-rest/issues"
+  },
+  "homepage": "https://github.com/felipefahrion/node-grpc-vs-rest#readme"
+}
