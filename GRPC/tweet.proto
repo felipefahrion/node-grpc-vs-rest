@@ -1,46 +1,50 @@
 syntax = "proto3";
 
-message Tweet {
-    string created_at = 1;
-    uint64 id = 2;
-    string id_str = 3;
-    string text = 4;
-    bool truncated = 5;
-    Entities entities = 6;
-    string source = 7;
-    User user = 8;
+package com.arthur.felipe.grpc.server;
+
+service TweetService {
+  rpc create(TweetResponse) returns (TweetResponse) {}
+
+  rpc update(TweetResponse) returns (TweetResponse) {}
+
+  rpc delete(TweetDeleteRequest) returns (Empty) {}
+
+  rpc getById(TweetId) returns (TweetResponse) {}
+
+  rpc getAll(Empty) returns (stream TweetResponse) {}
 }
 
-message Hashtags {
-    string text = 1;
-    repeated uint32 indices = 2;
+message TweetId {
+    string id = 1;
+}
+
+message TweetResponse {
+    repeated Tweet tweets = 1;
+}
+
+message Account_information {
+    string email = 1;
+    bool has_phone_number = 2;
+}
+
+message User_mentions {
+    uint32 id = 1;
+    string name = 2;
+    string screen_name = 3;
+    uint32 followers_count = 4;
+    bool verified = 5;
+    Account_information account_information = 6;
 }
 
 message Urls {
     string url = 1;
     string expanded_url = 2;
     string display_url = 3;
-    repeated uint32 indices = 4;
 }
 
 message Entities {
-    repeated Hashtags hashtags = 1;
-    repeated string symbols = 2;
-    repeated string user_mentions = 3;
-    repeated Urls urls = 4;
-}
-
-message Url {
-    repeated Urls urls = 1;
-}
-
-message Description {
-    repeated string urls = 1;
-}
-
-message UserEntity {
-    Url url = 1;
-    Description description = 2;
+    repeated User_mentions user_mentions = 1;
+    repeated Urls urls = 2;
 }
 
 message User {
@@ -51,12 +55,27 @@ message User {
     string location = 5;
     string description = 6;
     string url = 7;
-    UserEntity entities = 8;
-    uint32 followers_count = 9;
-    uint32 friends_count = 10;
-    uint32 listed_count = 11;
-    uint32 favourites_count = 12;
-    string created_at = 13;
-    uint32 utc_offset = 14;
-    string time_zone = 15;
+    uint32 followers_count = 8;
+    uint32 friends_count = 9;
+    uint32 listed_count = 10;
+    uint32 favourites_count = 11;
+    string created_at = 12;
+    uint32 utc_offset = 13;
+    string time_zone = 14;
+    bool verified = 15;
+    Account_information account_information = 16;
 }
+
+message Tweet {
+    string created_at = 1;
+    uint64 id = 2;
+    string text = 3;
+    Entities entities = 4;
+    User user = 5;
+}
+
+message TweetDeleteRequest {
+  uint32 id = 1;
+}
+
+message Empty {}
