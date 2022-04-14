@@ -1,7 +1,5 @@
 syntax = "proto3";
 
-package com.arthur.felipe.grpc.server;
-
 service TweetService {
   rpc create(TweetResponse) returns (TweetResponse) {}
 
@@ -11,7 +9,7 @@ service TweetService {
 
   rpc getById(TweetId) returns (TweetResponse) {}
 
-  rpc getAll(Empty) returns (stream TweetResponse) {}
+  rpc getAll(Empty) returns (TweetResponse) {}
 }
 
 message TweetId {
