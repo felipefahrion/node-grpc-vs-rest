@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client": "nodemon --inspect src/client/client.js",
-    "server": "nodemon --inspect src/server/server.js",
+    "client": "nodemon --inspect grpc/src/client/client.js",
+    "server": "nodemon --inspect grpc/src/server/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
