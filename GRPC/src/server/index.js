@@ -1,27 +1,12 @@
 const grpc = require("@grpc/grpc-js")
-const gRPCPackegeDefinition = require('../config/config.js')
+const gRPCPackegeDefinition = require('../config/config.js');
+const TweetMethodsService = require("./methods")
 
 const tweetProto = grpc.loadPackageDefinition(gRPCPackegeDefinition);
 
 const server = new grpc.Server();
 
-server.addService(tweetProto.TweetService.service, {
-  getAll: (_, callback) => {
-    callback(null, { message: "Method not implemented" })
-  },
-  create: (_, callback) => {
-    callback(null, { message: "Method not implemented" })
-  },
-  update: (_, callback) => {
-    callback(null, { message: "Method not implemented" })
-  },
-  delete: (_, callback) => {
-    callback(null, { message: "Method not implemented" })
-  },
-  getById: (_, callback) => {
-    callback(null, { message: "Method not implemented" })
-  }
-});
+server.addService(tweetProto.TweetService.service, TweetMethodsService);
 
 server.bindAsync(
   'localhost:50051',
