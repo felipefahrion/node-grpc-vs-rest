@@ -5,7 +5,7 @@ service TweetService {
 
   rpc update(TweetResponse) returns (TweetResponse) {}
 
-  rpc delete(TweetDeleteRequest) returns (Empty) {}
+  rpc delete(TweetId) returns (Empty) {}
 
   rpc getById(TweetId) returns (TweetResponse) {}
 
@@ -13,35 +13,35 @@ service TweetService {
 }
 
 message TweetId {
-    string id = 1;
+    uint32 id = 1;
 }
 
 message TweetResponse {
     repeated Tweet tweets = 1;
 }
 
-message Account_information {
+message AccountInformation {
     string email = 1;
     bool has_phone_number = 2;
 }
 
-message User_mentions {
+message UserMentions {
     uint32 id = 1;
     string name = 2;
-    string screen_name = 3;
-    uint32 followers_count = 4;
+    string screenName = 3;
+    uint32 followersCount = 4;
     bool verified = 5;
-    Account_information account_information = 6;
+    AccountInformation accountInformation = 6;
 }
 
 message Urls {
     string url = 1;
-    string expanded_url = 2;
-    string display_url = 3;
+    string expandedUrl = 2;
+    string displayUrl = 3;
 }
 
 message Entities {
-    repeated User_mentions user_mentions = 1;
+    repeated UserMentions userMentions = 1;
     repeated Urls urls = 2;
 }
 
@@ -49,31 +49,27 @@ message User {
     uint32 id = 1;
     string id_str = 2;
     string name = 3;
-    string screen_name = 4;
+    string screenName = 4;
     string location = 5;
     string description = 6;
     string url = 7;
-    uint32 followers_count = 8;
+    uint32 followersCount = 8;
     uint32 friends_count = 9;
-    uint32 listed_count = 10;
-    uint32 favourites_count = 11;
-    string created_at = 12;
+    uint32 listedCount = 10;
+    uint32 favouritesCount = 11;
+    string createdAt = 12;
     uint32 utc_offset = 13;
-    string time_zone = 14;
+    string timeZone = 14;
     bool verified = 15;
-    Account_information account_information = 16;
+    AccountInformation accountInformation = 16;
 }
 
 message Tweet {
-    string created_at = 1;
+    string createdAt = 1;
     uint64 id = 2;
     string text = 3;
     Entities entities = 4;
     User user = 5;
-}
-
-message TweetDeleteRequest {
-  uint32 id = 1;
 }
 
 message Empty {}
